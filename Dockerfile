@@ -49,10 +49,3 @@ USER jenkins
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/usr/local/bin/jenkins.sh"]
 
-# from a derived Dockerfile, can use `RUN plugin.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
-
-# When building an image, copy plugins.sh and pluginslist.sh to the container directory
-# Then run plugins.sh and pluginslist.txt as a parameter to download the latest plugin version specified in the pluginslist.txt
-COPY plugins.sh /usr/local/bin/plugins.sh
-COPY pluginslist.txt $JENKINS_HOME/pluginslist.txt
-RUN plugins.sh $JENKINS_HOME/pluginslist.txt
